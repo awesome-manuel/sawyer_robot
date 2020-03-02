@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<robot name="end_effector" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="gazebo" default="false"/>
+  <xacro:if value="$(arg gazebo)">
+    <xacro:property name="gazebo_tag" value="true" scope="local"/>
+  </xacro:if>
+  <xacro:unless value="$(arg gazebo)">
+    <xacro:property name="gazebo_tag" value="false" scope="local"/>
+  </xacro:unless>
+
+  <xacro:include filename="$(find intera_tools_description)/urdf/smart_tool_plate/smart_tool_plate.xacro" />
+  <xacro:rethink_smart_tool_plate side="right"
+                                  gazebo="${gazebo_tag}"/>
+</robot>
